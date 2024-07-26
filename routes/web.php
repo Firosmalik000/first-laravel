@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// import
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
@@ -21,5 +22,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-route::get('admin/dashboard', [HomeController::class, 'index']);
+// middleware di tambahkan yang sudah diinisialisasi di bootstrap
+route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);

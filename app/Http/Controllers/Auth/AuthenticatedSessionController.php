@@ -28,6 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // setelah proses login selesai, memindahkan untuk usertype admin ke halaman admin dashboard yang telah di buat di route web.php
+        if($request->user()->usertype === 'admin') {
+            return redirect('admin/dashboard');
+        }
+
+        // jika tidak admin maka memindahkan ke halaman dashboard utama/ default
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
